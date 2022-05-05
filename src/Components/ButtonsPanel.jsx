@@ -28,7 +28,7 @@ export default function ButtonsPanel({
         <button
           type="button"
           className="pause"
-          onClick={() => {console.log(playPause); playPause(false);}}
+          onClick={() => playPause(false)}
           aria-label="Pause"
         >
           <Pause />
