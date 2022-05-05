@@ -4,10 +4,8 @@ import { Checkbox } from "@mui/material";
 
 export default function Channel(props) {
   const [mute, setMute] = useState(false);
-
-  const audio = require("././assets/DRUMS.mp3");
   // Refs
-  const audioRef = useRef(new Audio(audio));
+  const audioRef = useRef(new Audio(props.audio));
   // const intervalRef = useRef();
 
   useEffect(() => {
@@ -23,15 +21,11 @@ export default function Channel(props) {
 
   useEffect(() => {
     if (props.isLooping) {
-      audioRef.current.addEventListener(
-        "ended",
-        function () {
+      audioRef.current.addEventListener("ended", function () {
           audioRef.current.currentTime = 0;
           audioRef.current.play();
           console.log("In event listener");
-        },
-        false
-      );
+        }, false);
       console.log("Loop");
     } else {
       console.log("Not Loop");
@@ -46,14 +40,13 @@ export default function Channel(props) {
   return (
     <div>
       <div >
-      {/* style={{ backgroundColor: props.color }} */}
-        <h5>{props.soundName}</h5>
-        <Checkbox
-          className={props.class}
+        <h5 style={{ backgroundColor: props.color }}>{props.soundName}</h5>
+        {/* <Checkbox
+          // className={props.class}
           onClick={handleMuteClick}
           checked={mute}
           icon={<Unmute style={{ color: "black" }} />}
-          checkedIcon={<Mute style={{ color: "black" }} />} />
+          checkedIcon={<Mute style={{ color: "black" }} />} /> */}
       </div>
     </div>
   )
