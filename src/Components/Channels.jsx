@@ -14,6 +14,7 @@ export default function Channels(props) {
         isStopped={props.isStopped}
         isLooping={props.isLooping}
         playPause={props.playPause}
+        cursor={props.cursor}
       />
     );
   });

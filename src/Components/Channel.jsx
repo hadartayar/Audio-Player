@@ -4,9 +4,7 @@ import { Checkbox } from "@mui/material";
 
 export default function Channel(props) {
   const [isMute, setMute] = useState(true);
-  // Refs
   const audioRef = useRef(new Audio(props.audio));
-  // const intervalRef = useRef();
 
   useEffect(() => {
     props.isPlaying ? audioRef.current.play() : audioRef.current.pause();
@@ -33,11 +31,13 @@ export default function Channel(props) {
 
   const playFromStart = () => {
     returnToStart();
+    props.cursor(0);
     play();
   }
 
   const returnToStart = () => {
     audioRef.current.currentTime = 0;
+    props.cursor(0)
     props.playPause(false);
   }
 
