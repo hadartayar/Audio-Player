@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ImPlay3 as Play, ImPause2 as Pause, ImStop2 as Stop, ImLoop as Loop } from "react-icons/im";
+import { ImPlay3 as Play, ImPause2 as Pause, ImStop2 as Stop } from "react-icons/im";
+import { MdRepeat as NoLoop, MdRepeatOn as Loop } from "react-icons/md";
 import { Button, Checkbox } from "@mui/material";
 
 export default function ButtonsPanel({
@@ -53,14 +54,25 @@ export default function ButtonsPanel({
         <Stop />
       </button>
 
+      {isLooping ? (
       <button
         type="button"
-        className="next"
-        aria-label="Next"
-        onClick={() => loop(!isLooping)}
+        className="loop"
+        aria-label="Loop"
+        onClick={() => loop(false)}
       >
         <Loop />
       </button>
+      ) : (
+      <button
+        type="button"
+        className="noLoop"
+        aria-label="NoLoop"
+        onClick={() => loop(true)}
+      >
+        <NoLoop />
+      </button>
+      )}
     </div>
   )
 }
