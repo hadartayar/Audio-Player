@@ -57,7 +57,7 @@ export default function ButtonsPanel({
         type="button"
         className="next"
         aria-label="Next"
-        onClick={() => isLooping(true)}
+        onClick={() => {console.log(isLooping); loop(!isLooping)}}
       >
         <Loop />
       </button>

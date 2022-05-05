@@ -27,12 +27,15 @@ export default function Hadar(tracks) {
       audioRef.current.currentTime = 0;
       setIsPlaying(false);
     }
-    else
+    else{
       setIsStopped(false);
+      setIsLooping(false);
+    }
   }, [isStopped]);
 
 
   useEffect(() => {
+    console.log("in")
     if (isLooping) {
       audioRef.current.addEventListener('ended', function () {
         audioRef.current.currentTime = 0;
@@ -42,7 +45,6 @@ export default function Hadar(tracks) {
        console.log("Loop")
     }
     else{
-      setIsLooping(false);
       console.log("Not Loop")
     }
       
