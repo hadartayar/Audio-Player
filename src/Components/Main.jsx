@@ -10,7 +10,7 @@ export default function Hadar(tracks) {
   const [isLooping, setIsLooping] = useState(false);
 
 
-  const audio = require("././assets/DRUMS.mp3");
+  const audio = require("../assets/DRUMS.mp3");
   // Refs
   const audioRef = useRef(new Audio(audio));
   const intervalRef = useRef();

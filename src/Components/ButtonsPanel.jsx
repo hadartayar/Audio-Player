@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { ImPlay3 as Play, ImPause2 as Pause, ImStop2 as Stop, ImLoop as Loop } from "react-icons/im";
 import { Button, Checkbox } from "@mui/material";
 
-export default function ButtonsPanel(
+export default function ButtonsPanel({
   isPlaying,
   playPause,
   isStopped,
   isLooping,
-  loop) {
+  loop}) {
 
   return (
     <div>
@@ -28,7 +28,7 @@ export default function ButtonsPanel(
         <button
           type="button"
           className="pause"
-          onClick={() => playPause(false)}
+          onClick={() => {console.log(playPause); playPause(false);}}
           aria-label="Pause"
         >
           <Pause />
