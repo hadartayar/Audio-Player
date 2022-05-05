@@ -3,7 +3,7 @@ import { ImVolumeMute2 as Mute, ImVolumeMedium as Unmute } from "react-icons/im"
 import { Checkbox } from "@mui/material";
 
 export default function Channel(props) {
-  const [mute, setMute] = useState(false);
+  const [isMute, setMute] = useState(true);
   // Refs
   const audioRef = useRef(new Audio(props.audio));
   // const intervalRef = useRef();
@@ -30,27 +30,25 @@ export default function Channel(props) {
   }, [props.isLooping]);
 
   const playFromStart = () => {
-      console.log(audioRef.current.on);
       audioRef.current.currentTime = 0;
       audioRef.current.play();
-      console.log("loop");
   }
   
   const handleMuteClick = () => {
-    setMute((prevState) => !prevState);
-    mute ? (audioRef.current.muted = true) : (audioRef.muted = false);
+    setMute(prevState => {return !prevState;});
+    audioRef.current.muted = isMute;
   };
   
   return (
     <div>
-      <div >
+      <div>
         <h5 style={{ backgroundColor: props.color }}>{props.soundName}</h5>
-        {/* <Checkbox
+        <Checkbox
           // className={props.class}
           onClick={handleMuteClick}
-          checked={mute}
-          icon={<Unmute style={{ color: "black" }} />}
-          checkedIcon={<Mute style={{ color: "black" }} />} /> */}
+          checked={isMute}
+          icon={<Mute style={{ color: "black" }} />}
+          checkedIcon={<Unmute style={{ color: "black" }} />} />
       </div>
     </div>
   )
