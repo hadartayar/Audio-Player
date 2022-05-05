@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import ButtonsPanel from "./ButtonsPanel";
-// import Channels from "./Channels";
-// import cali from "./assets/cali-wataboi.mp3";
+import Channels from "./Channels";
 
-export default function Hadar(tracks) {
-  //const { title, artist, color, image, audioSrc } = tracks[0];
+export default function Hadar({tracks}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isStopped, setIsStopped] = useState(false);
   const [isLooping, setIsLooping] = useState(false);
@@ -17,35 +15,21 @@ export default function Hadar(tracks) {
 
 
   useEffect(() => {
-    isPlaying ? audioRef.current.play() : audioRef.current.pause();
     setIsStopped(false);
   }, [isPlaying]);
 
   useEffect(() => {
-    if (isStopped) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
+    if (isStopped)
       setIsPlaying(false);
-    }
     else
       setIsStopped(false);
   }, [isStopped]);
 
 
   useEffect(() => {
-    if (isLooping) {
-      audioRef.current.addEventListener('ended', function () {
-        audioRef.current.currentTime = 0;
-        audioRef.current.play();
-        console.log("In event listener")
-      }, false); 
-       console.log("Loop")
-    }
-    else{
+    if (!isLooping) {
       setIsLooping(false);
-      console.log("Not Loop")
     }
-      
   }, [isLooping]);
 
 
@@ -66,7 +50,12 @@ export default function Hadar(tracks) {
 
   return (
     <div>
-      {/* <Channels/> */}
+      <Channels
+        tracks={tracks}
+        isPlaying={isPlaying}
+        isStopped={isStopped}
+        isLooping={isLooping}
+      />
       
       <ButtonsPanel
         isPlaying={isPlaying}
