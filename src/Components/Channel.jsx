@@ -40,16 +40,13 @@ export default function Channel(props) {
   };
   
   return (
-    <div>
-      <div>
-        <h5 style={{ backgroundColor: props.color }}>{props.soundName}</h5>
-        <Checkbox
-          // className={props.class}
-          onClick={handleMuteClick}
-          checked={isMute}
-          icon={<Mute style={{ color: "black" }} />}
-          checkedIcon={<Unmute style={{ color: "black" }} />} />
-      </div>
+    <div style={{ display: "flex" }}>
+      <h5 style={{ backgroundColor: props.color, width:"100%" }}>{props.soundName}</h5>
+      <Checkbox
+        onClick={handleMuteClick}
+        checked={isMute}
+        icon={<Mute style={{ color: "black" }} />}
+        checkedIcon={<Unmute style={{ color: "black" }} />} />
     </div>
   )
 }
