@@ -22,10 +22,6 @@ export default function Hadar({tracks}) {
     if (isStopped) {
       setIsPlaying(false);
     }
-    else{
-      setIsStopped(false);
-      setIsLooping(false);
-    }
   }, [isStopped]);
 
 

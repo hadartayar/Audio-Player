@@ -20,30 +20,23 @@ export default function Channel(props) {
   }, [props.isStopped]);
 
   useEffect(() => {
-    if(props.isLooping){
-      audioRef.current.addEventListener("ended", playFromStart, false);
-    } else {
-      audioRef.current.addEventListener("ended", returnToStart, false);
-    }
+    const x = playFromStart.bind({isLooping: props.isLooping});
+    audioRef.current.addEventListener("ended", x, false);
 
     return () => {
-      audioRef.current.removeEventListener("ended", playFromStart, false);
+      audioRef.current.removeEventListener("ended", x, false);
     }
   }, [props.isLooping]);
 
-  const playFromStart = () => {
-    returnToStart();
-    play();
-  }
-
-  const returnToStart = () => {
+  const playFromStart = function() {
+    console.log(this.isLooping);
     audioRef.current.currentTime = 0;
-    props.playPause(false);
-  }
-
-  const play = () => {
-    props.playPause(true);
-    audioRef.current.play();
+    if(this.isLooping){
+      audioRef.current.play();
+    }
+    if(props.isPlaying !== this.isLooping){
+      props.playPause(this.isLooping);
+    }
   }
   
   const handleMuteClick = () => {
