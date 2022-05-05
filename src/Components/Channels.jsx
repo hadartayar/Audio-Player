@@ -13,6 +13,7 @@ export default function Channels(props) {
         isPlaying={props.isPlaying}
         isStopped={props.isStopped}
         isLooping={props.isLooping}
+        playPause={props.playPause}
       />
     );
   });

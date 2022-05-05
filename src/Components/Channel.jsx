@@ -22,6 +22,8 @@ export default function Channel(props) {
   useEffect(() => {
     if(props.isLooping){
       audioRef.current.addEventListener("ended", playFromStart, false);
+    } else {
+      audioRef.current.addEventListener("ended", returnToStart, false);
     }
 
     return () => {
@@ -30,8 +32,18 @@ export default function Channel(props) {
   }, [props.isLooping]);
 
   const playFromStart = () => {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
+    returnToStart();
+    play();
+  }
+
+  const returnToStart = () => {
+    audioRef.current.currentTime = 0;
+    props.playPause(false);
+  }
+
+  const play = () => {
+    props.playPause(true);
+    audioRef.current.play();
   }
   
   const handleMuteClick = () => {

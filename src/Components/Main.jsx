@@ -58,6 +58,7 @@ export default function Hadar({tracks}) {
         isPlaying={isPlaying}
         isStopped={isStopped}
         isLooping={isLooping}
+        playPause={setIsPlaying}
       />
       
       <ButtonsPanel
