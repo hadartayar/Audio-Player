@@ -41,7 +41,7 @@ export default function Channel(props) {
     setMute(prevState => {return !prevState;});
     audioRef.current.muted = isMute;
   };
-  
+
   return (
     <div style={{ display: "flex" }}>
       <h5 style={{ backgroundColor: props.color, width:"100%" }}>{props.soundName}</h5>
