@@ -9,7 +9,7 @@ export default function Cursor(props) {
         step="1"
         min="0"
         max="17"
-        // onChange={(e) => props.onScrub(e.target.value)}
+        onChange={(e) => props.onChange(e.target.value)}
         style={{ width: "100%" }}
       />
     </div>

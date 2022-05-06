@@ -11,11 +11,17 @@ export default function Hadar({ tracks }) {
 
   useEffect(() => {
     if (isPlaying) {
-      const interval = setInterval(() => setTrackProgress((oldTrackProgress) => { console.log(oldTrackProgress); return oldTrackProgress + 1; }), 1000);
+      // const input = document.querySelector('input');
+      // input.addEventListener('change', updateValue);
+      const interval = setInterval(() => setTrackProgress((oldTrackProgress) => {
+        console.log(oldTrackProgress);
+        return oldTrackProgress + 1;
+      }), 1000);
       return _ => clearInterval(interval);
     }
     setIsStopped(false);
   }, [isPlaying], [trackProgress]);
+
 
   useEffect(() => {
     if (isStopped) {
@@ -25,25 +31,17 @@ export default function Hadar({ tracks }) {
   }, [isStopped]);
 
   const onScrub = (value) => {
-    console.log(value * 1);
+    console.log("VAL:", value * 1)
     setTrackProgress(value * 1);
   };
 
   return (
     <div>
-      {/* <input
-        type="range"
-        value={trackProgress}
-        step="1"
-        min="0"
-        max="17"
-        onChange={(e) => onScrub(e.target.value)}
-        style={{ width: "100%" }}
-      /> */}
       <Cursor
         value={trackProgress}
-        // onScrub={(e) => onScrub(e.target.value)}
+        onChange={onScrub}
       />
+
       <Channels
         tracks={tracks}
         isPlaying={isPlaying}
