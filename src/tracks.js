@@ -1,6 +1,6 @@
 export default[
   {
-    title: "tambourine shake higher",
+    title: "tambourine shake higher".toUpperCase(),
     color: "#588c7e",
     audio: require("./assets/_tambourine_shake_higher.mp3"),
   },

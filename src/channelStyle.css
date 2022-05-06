@@ -1,7 +1,6 @@
 .innerDiv{
-    /* display: flex;
-    justify-content: center; */
-    display: inline;
+    display: flex;
+    justify-content: space-between; 
 
 }
 

@@ -1,19 +1,27 @@
 import React, { useEffect, useState, useRef } from "react";
 import { ImVolumeMute2 as Mute, ImVolumeMedium as Unmute } from "react-icons/im";
 import { Checkbox } from "@mui/material";
+import "../channelStyle.css";
 
 export default function Channel(props) {
   const [isMute, setMute] = useState(true);
   const audioRef = useRef(new Audio(props.audio));
-
+  
   useEffect(() => {
-    props.isPlaying ? audioRef.current.play() : audioRef.current.pause();
+    if(props.isPlaying){
+      audioRef.current.play();
+    }
+    else{
+      audioRef.current.pause();
+    }
+
   }, [props.isPlaying]);
 
   useEffect(() => {
     if (props.isStopped) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
+      props.cursor(0);
     }
   }, [props.isStopped]);
 
@@ -27,29 +35,33 @@ export default function Channel(props) {
   }, [props.isLooping]);
 
   const playFromStart = function() {
-    console.log(this.isLooping);
     audioRef.current.currentTime = 0;
+    props.cursor(0);
     if(this.isLooping){
       audioRef.current.play();
-    }
-    if(props.isPlaying !== this.isLooping){
-      props.playPause(this.isLooping);
+    } else {
+      props.playPause(false);
     }
   }
-  
+
   const handleMuteClick = () => {
-    setMute(prevState => {return !prevState;});
+    setMute(prevState => { return !prevState; });
     audioRef.current.muted = isMute;
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <h5 style={{ backgroundColor: props.color, width:"100%" }}>{props.soundName}</h5>
-      <Checkbox
-        onClick={handleMuteClick}
-        checked={isMute}
-        icon={<Mute style={{ color: "black" }} />}
-        checkedIcon={<Unmute style={{ color: "black" }} />} />
+    <div>
+      <div className="innerDiv" style={{ backgroundColor: props.color }}>
+        <div></div>
+        <div style={{ backgroundColor: props.color }} >
+          <h4 >{props.soundName}</h4>
+        </div>
+        <Checkbox
+          onClick={handleMuteClick}
+          checked={isMute}
+          icon={<Mute style={{ color: "black" }} />}
+          checkedIcon={<Unmute style={{ color: "black" }} />} />
+      </div>
     </div>
   )
 }
