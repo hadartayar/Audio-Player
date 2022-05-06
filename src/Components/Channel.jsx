@@ -31,9 +31,8 @@ export default function Channel(props) {
     audioRef.current.currentTime = 0;
     if(this.isLooping){
       audioRef.current.play();
-    }
-    if(props.isPlaying !== this.isLooping){
-      props.playPause(this.isLooping);
+    } else {
+      props.playPause(false);
     }
   }
   
