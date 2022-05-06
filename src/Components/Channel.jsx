@@ -1,34 +1,26 @@
 import React, { useEffect, useState, useRef } from "react";
-import { ImVolumeMute2 as Mute, ImVolumeMedium as Unmute } from "react-icons/im";
+import {
+  ImVolumeMute2 as Mute,
+  ImVolumeMedium as Unmute,
+} from "react-icons/im";
 import { Checkbox, formControlLabelClasses } from "@mui/material";
 import "../channelStyle.css";
 
 export default function Channel(props) {
   const [isMute, setMute] = useState(true);
-  const audioRef = useRef(new Audio(props.audio));  
+  const audioRef = useRef(new Audio(props.audio));
 
-  //Handle the play/pause of the audioRef
+  //Play/Pause audioRef
   useEffect(() => {
-    if (props.isPlaying) {
-      audioRef.current.play();
-      //updateValue();
-    }
-    else {
-      audioRef.current.pause();
-    }
-  }, [props.isPlaying], [props.currentTime]);
+    props.isPlaying ? audioRef.current.play() : audioRef.current.pause();
+  }, [props.isPlaying]);
 
-
+  //Update the audio current time when the cursor change - Bonus
   useEffect(() => {
-    updateValue();
-  }, [props.currentTime]);
+    audioRef.current.currentTime = props.dropedValue;
+  }, [props.dropedValue]);
 
-  const updateValue =() => {
-    console.log("CurrentTime Channel: " ,props.currentTime);    
-    audioRef.current.currentTime = props.currentTime;
-  }
-
-  //Handle the stop of the audioRef
+  //Stop audioRef
   useEffect(() => {
     if (props.isStopped) {
       audioRef.current.pause();
@@ -36,29 +28,27 @@ export default function Channel(props) {
     }
   }, [props.isStopped]);
 
-  //Handle loop case
+  //Handle Loop case
   useEffect(() => {
     const x = playFromStart.bind({ isLooping: props.isLooping });
     audioRef.current.addEventListener("ended", x, false);
 
     return () => {
       audioRef.current.removeEventListener("ended", x, false);
-    }
+    };
   }, [props.isLooping]);
 
   const playFromStart = function () {
     audioRef.current.currentTime = 0;
     props.cursor(0);
-    if (this.isLooping) {
-      audioRef.current.play();
-    } else {
-      props.playPause(false);
-    }
-  }
+    this.isLooping ? audioRef.current.play() : props.playPause(false);
+  };
 
   //Handle mute toggle button
   const handleMuteClick = () => {
-    setMute(prevState => { return !prevState; });
+    setMute((prevState) => {
+      return !prevState;
+    });
     audioRef.current.muted = isMute;
   };
 
@@ -66,15 +56,16 @@ export default function Channel(props) {
     <div>
       <div className="innerDiv" style={{ backgroundColor: props.color }}>
         <div></div>
-        <div style={{ backgroundColor: props.color }} >
-          <h4 >{props.soundName}</h4>
+        <div style={{ backgroundColor: props.color }}>
+          <h4>{props.soundName}</h4>
         </div>
         <Checkbox
           onClick={handleMuteClick}
           checked={isMute}
           icon={<Mute style={{ color: "black" }} />}
-          checkedIcon={<Unmute style={{ color: "black" }} />} />
+          checkedIcon={<Unmute style={{ color: "black" }} />}
+        />
       </div>
     </div>
-  )
+  );
 }

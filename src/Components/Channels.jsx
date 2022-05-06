@@ -15,7 +15,7 @@ export default function Channels(props) {
         isLooping={props.isLooping}
         playPause={props.playPause}
         cursor={props.cursor} //Set the track Progress
-        currentTime={props.currentTime} //Get the time proggress
+        dropedValue={props.dropedValue} //Get the value of the cursor when droped
       />
     );
   });

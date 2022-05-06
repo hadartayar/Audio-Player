@@ -8,6 +8,7 @@ export default function Main({ tracks }) {
   const [isStopped, setIsStopped] = useState(false);
   const [isLooping, setIsLooping] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);  //The cursor progress
+  const [dropedValue, setDropedValue] = useState(0);  //The cursor progress
 
   //Handle the play/pause buttons
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function Main({ tracks }) {
       return _ => clearInterval(interval);
     }
     setIsStopped(false);
-  }, [isPlaying], [trackProgress]);
+  }, [isPlaying]);
 
   //Handle the stop button
   useEffect(() => {
@@ -33,7 +34,8 @@ export default function Main({ tracks }) {
 
   //Handle the drug and drop cursor (Bonus)
   const onChangeCursor = (value) => {
-    console.log("VAL:", value * 1)
+    // console.log("VAL:", value * 1)
+    setDropedValue(value * 1);
     setTrackProgress(value * 1);
   };
 
@@ -51,7 +53,7 @@ export default function Main({ tracks }) {
         isLooping={isLooping}
         playPause={setIsPlaying}
         cursor={setTrackProgress}
-        currentTime={trackProgress}
+        dropedValue={dropedValue}
       />
 
       <ButtonsPanel
