@@ -5,27 +5,30 @@ import "../channelStyle.css";
 
 export default function Channel(props) {
   const [isMute, setMute] = useState(true);
-  const audioRef = useRef(new Audio(props.audio));
+  const audioRef = useRef(new Audio(props.audio));  
 
+  //Handle the play/pause of the audioRef
   useEffect(() => {
     if (props.isPlaying) {
       audioRef.current.play();
-      updateValue();
+      //updateValue();
     }
     else {
       audioRef.current.pause();
     }
   }, [props.isPlaying], [props.currentTime]);
 
-  // useEffect(() => {
-  //   updateValue();
-  // }, [props.currentTime]);
+
+  useEffect(() => {
+    updateValue();
+  }, [props.currentTime]);
 
   const updateValue =() => {
     console.log("CurrentTime Channel: " ,props.currentTime);    
     audioRef.current.currentTime = props.currentTime;
   }
 
+  //Handle the stop of the audioRef
   useEffect(() => {
     if (props.isStopped) {
       audioRef.current.pause();
@@ -33,6 +36,7 @@ export default function Channel(props) {
     }
   }, [props.isStopped]);
 
+  //Handle loop case
   useEffect(() => {
     const x = playFromStart.bind({ isLooping: props.isLooping });
     audioRef.current.addEventListener("ended", x, false);
@@ -52,6 +56,7 @@ export default function Channel(props) {
     }
   }
 
+  //Handle mute toggle button
   const handleMuteClick = () => {
     setMute(prevState => { return !prevState; });
     audioRef.current.muted = isMute;

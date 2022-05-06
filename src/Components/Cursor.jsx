@@ -10,7 +10,7 @@ export default function Cursor(props) {
         min="0"
         max="17"
         onChange={(e) => props.onChange(e.target.value)}
-        style={{ width: "100%" }}
+        style={{ width: "100%", marginTop:"1px" }}
       />
     </div>
   )

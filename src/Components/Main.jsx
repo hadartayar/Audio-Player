@@ -3,12 +3,13 @@ import ButtonsPanel from "./ButtonsPanel";
 import Channels from "./Channels";
 import Cursor from "./Cursor";
 
-export default function Hadar({ tracks }) {
+export default function Main({ tracks }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isStopped, setIsStopped] = useState(false);
   const [isLooping, setIsLooping] = useState(false);
-  const [trackProgress, setTrackProgress] = useState(0);
+  const [trackProgress, setTrackProgress] = useState(0);  //The cursor progress
 
+  //Handle the play/pause buttons
   useEffect(() => {
     if (isPlaying) {
       // const input = document.querySelector('input');
@@ -22,7 +23,7 @@ export default function Hadar({ tracks }) {
     setIsStopped(false);
   }, [isPlaying], [trackProgress]);
 
-
+  //Handle the stop button
   useEffect(() => {
     if (isStopped) {
       setIsPlaying(false);
@@ -30,7 +31,8 @@ export default function Hadar({ tracks }) {
     }
   }, [isStopped]);
 
-  const onScrub = (value) => {
+  //Handle the drug and drop cursor (Bonus)
+  const onChangeCursor = (value) => {
     console.log("VAL:", value * 1)
     setTrackProgress(value * 1);
   };
@@ -39,7 +41,7 @@ export default function Hadar({ tracks }) {
     <div>
       <Cursor
         value={trackProgress}
-        onChange={onScrub}
+        onChange={onChangeCursor}
       />
 
       <Channels
