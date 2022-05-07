@@ -1,6 +1,6 @@
 ****Description:****
 ****
-**The audio looper is composed of colorfull rows, each row represents a sound segment. 
+**The audio looper is composed of colorful rows, each row represents a sound segment. 
 Each row has a mute button that allows the user to disable a specific soundtrack. 
 In addition, there are three buttons on the audio looper:**
 
