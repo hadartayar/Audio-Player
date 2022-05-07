@@ -8,7 +8,7 @@ In addition, there are three buttons on the audio looper:**
 - Stop button - pauses the music and also resetting the soundtracks.
 - Loop button - the option to hear the soundtracks over and over again.
 
-**Another feature the audio looper has is the cursor. 
-The cursor points to the current time of the soundtrack and lets the user change the current time of the soundtracks by drag and drop functionality.**
+**Another feature the audio looper has is the cursor (the progress bar). 
+The progress bar points to the current time of the soundtrack and lets the user change the current time of the sounds by clicking on the progress bar.**
 
 Thank you- Hadar Tayar.
