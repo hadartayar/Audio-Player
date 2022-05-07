@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import ButtonsPanel from "./ButtonsPanel";
-import Channels from "./Channels";
+import React, { useState, useEffect } from "react";
 import Cursor from "./Cursor";
+import Channels from "./Channels";
+import ButtonsPanel from "./ButtonsPanel";
 
 export default function Main({ tracks }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -13,8 +13,6 @@ export default function Main({ tracks }) {
   //Handle the play/pause buttons
   useEffect(() => {
     if (isPlaying) {
-      // const input = document.querySelector('input');
-      // input.addEventListener('change', updateValue);
       const interval = setInterval(() => setTrackProgress((oldTrackProgress) => {
         console.log(oldTrackProgress);
         return oldTrackProgress + 1;
@@ -34,7 +32,6 @@ export default function Main({ tracks }) {
 
   //Handle the drug and drop cursor (Bonus)
   const onChangeCursor = (value) => {
-    // console.log("VAL:", value * 1)
     setDropedValue(value * 1);
     setTrackProgress(value * 1);
   };

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Channel from './Channel';
 
 export default function Channels(props) {

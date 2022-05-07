@@ -3,7 +3,7 @@ import {
   ImVolumeMute2 as Mute,
   ImVolumeMedium as Unmute,
 } from "react-icons/im";
-import { Checkbox, formControlLabelClasses } from "@mui/material";
+import { Checkbox } from "@mui/material";
 import "../channelStyle.css";
 
 export default function Channel(props) {
@@ -32,7 +32,6 @@ export default function Channel(props) {
   useEffect(() => {
     const x = playFromStart.bind({ isLooping: props.isLooping });
     audioRef.current.addEventListener("ended", x, false);
-
     return () => {
       audioRef.current.removeEventListener("ended", x, false);
     };
