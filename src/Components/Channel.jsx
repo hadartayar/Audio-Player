@@ -30,10 +30,10 @@ export default function Channel(props) {
 
   //Handle Loop case
   useEffect(() => {
-    const x = playFromStart.bind({ isLooping: props.isLooping });
-    audioRef.current.addEventListener("ended", x, false);
+    const onEnded = playFromStart.bind({ isLooping: props.isLooping });
+    audioRef.current.addEventListener("ended", onEnded, false);
     return () => {
-      audioRef.current.removeEventListener("ended", x, false);
+      audioRef.current.removeEventListener("ended", onEnded, false);
     };
   }, [props.isLooping]);
 
