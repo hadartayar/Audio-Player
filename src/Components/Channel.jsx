@@ -30,17 +30,18 @@ export default function Channel(props) {
 
   //Handle Loop case
   useEffect(() => {
-    const onEnded = playFromStart.bind({ isLooping: props.isLooping });
-    audioRef.current.addEventListener("ended", onEnded, false);
+    // const onEnded = playFromStart.bind({ isLooping: props.isLooping });
+    audioRef.current.addEventListener("ended", playFromStart, false);
     return () => {
-      audioRef.current.removeEventListener("ended", onEnded, false);
+      audioRef.current.removeEventListener("ended", playFromStart, false);
     };
   }, [props.isLooping]);
 
   const playFromStart = function () {
     audioRef.current.currentTime = 0;
     props.cursor(0);
-    this.isLooping ? audioRef.current.play() : props.playPause(false);
+    // this.isLooping ? audioRef.current.play() : props.playPause(false);
+    props.isLooping ? audioRef.current.play() : props.playPause(false);
   };
 
   //Handle mute toggle button

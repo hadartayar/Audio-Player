@@ -14,7 +14,6 @@ export default function Main({ tracks }) {
   useEffect(() => {
     if (isPlaying) {
       const interval = setInterval(() => setTrackProgress((oldTrackProgress) => {
-        console.log(oldTrackProgress);
         return oldTrackProgress + 1;
       }), 1000);
       return _ => clearInterval(interval);
